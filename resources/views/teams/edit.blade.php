@@ -19,7 +19,7 @@
         <label for="overall">Overall</label>
         <input type="number" name="overall" id="overall" value="{{ $team->overall }}">
 
-        <button type="submit">Create</button>
+        <button type="submit">Update</button>
     </form>
 </div>
 

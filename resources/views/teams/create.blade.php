@@ -17,7 +17,7 @@
         <label for="overall">Overall</label>
         <input type="number" name="overall" id="overall">
 
-        <button type="submit">Create</button>
+        <button type="submit">Store</button>
     </form>
 </div>
 
