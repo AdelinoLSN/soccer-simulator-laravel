@@ -20,21 +20,25 @@ Route::get('/', function () {
 });
 
 Route::prefix('')->group(function () {
-    Route::get('/teams/list', [TeamController::class, 'list'])->name('teams.list');
+    Route::get('/teams/index', [TeamController::class, 'index'])->name('teams.index');
     Route::get('/teams/create', [TeamController::class, 'create'])->name('teams.create');
     Route::post('/teams/store', [TeamController::class, 'store'])->name('teams.store');
-    Route::get('/teams/{team}/show', [TeamController::class, 'show'])->name('teams.show');
-    Route::get('/teams/{team}/edit', [TeamController::class, 'edit'])->name('teams.edit');
+    Route::get('/teams/{team_id}/show', [TeamController::class, 'show'])->name('teams.show');
+    Route::get('/teams/{team_id}/edit', [TeamController::class, 'edit'])->name('teams.edit');
     Route::put('/teams/update', [TeamController::class, 'update'])->name('teams.update');
     Route::delete('/teams/destroy', [TeamController::class, 'destroy'])->name('teams.destroy');
 });
 
 Route::prefix('')->group(function () {
-    Route::get('/matches/list', [MatchController::class, 'list'])->name('matches.list');
+    Route::get('/matches/index', [MatchController::class, 'index'])->name('matches.index');
     Route::get('/matches/create', [MatchController::class, 'create'])->name('matches.create');
     Route::post('/matches/store', [MatchController::class, 'store'])->name('matches.store');
-    Route::get('/matches/{team}/show', [MatchController::class, 'show'])->name('matches.show');
-    Route::get('/matches/{team}/edit', [MatchController::class, 'edit'])->name('matches.edit');
+    Route::get('/matches/{match_id}/show', [MatchController::class, 'show'])->name('matches.show');
+    Route::get('/matches/{match_id}/edit', [MatchController::class, 'edit'])->name('matches.edit');
     Route::put('/matches/update', [MatchController::class, 'update'])->name('matches.update');
     Route::delete('/matches/destroy', [MatchController::class, 'destroy'])->name('matches.destroy');
+    // Not CRUD
+    Route::get('/matches/{match_id}/play', [MatchController::class, 'getPlay'])->name('matches.play');
+    Route::put('/matches/play', [MatchController::class, 'putPlay'])->name('matches.play.put');
+    Route::get('/matches/{match_id}/play/auto', [MatchController::class, 'getPlayAuto'])->name('matches.play.auto');
 });

@@ -7,10 +7,10 @@ use App\Models\{Team, Match};
 
 class MatchController extends Controller
 {
-    public function list() {
+    public function index() {
         $matches = Match::all();
 
-        return view('matches.list', compact('matches'));
+        return view('matches.index', compact('matches'));
     }
 
     public function create() {
@@ -26,7 +26,7 @@ class MatchController extends Controller
             'is_neutral' => $request->is_neutral ? true : false,
         ]);
 
-        return redirect()->route('matches.list');
+        return redirect()->route('matches.index');
     }
 
     public function show($match_id) {
@@ -48,10 +48,7 @@ class MatchController extends Controller
         $match->update([
             'left_team_id' => $request->left_team_id,
             'right_team_id' => $request->right_team_id,
-            'left_team_score' => $request->left_team_score,
-            'right_team_score' => $request->right_team_score,
-            'is_neutral' => $request->is_neutral,
-            'is_finished' => $request->is_finished,
+            'is_neutral' => $request->is_neutral ? true : false,
         ]);
 
         return redirect()->route('matches.show', [$match->id]);
@@ -62,6 +59,36 @@ class MatchController extends Controller
 
         $match->delete();
 
-        return redirect()->route('matches.list');
+        return redirect()->route('matches.index');
+    }
+
+    // Not CRUD
+
+    public function getPlay($match_id) {
+        $match = Match::with(['left_team', 'right_team'])->findOrFail($match_id);
+
+        return view('matches.play', compact('match'));
+    }
+
+    public function putPlay(Request $request) {
+        $match = Match::with(['left_team', 'right_team'])->findOrFail($request->match_id);
+
+        $match->update([
+            'left_team_score' => $request->left_team_score,
+            'right_team_score' => $request->right_team_score,
+            'is_played' => true,
+        ]);
+
+        return redirect()->route('matches.show', [$match->id]);
+    }
+
+    public function getPlayAuto($match_id) {
+        $match = Match::with(['left_team', 'right_team'])->findOrFail($match_id);
+
+        $match = $match->playAuto();
+        $real_time = json_decode($match->real_time, true);
+        $statistics = $match->getStatistics();
+
+        return view('matches.play_auto', compact('match', 'real_time', 'statistics'));
     }
 }

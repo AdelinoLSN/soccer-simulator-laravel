@@ -19,8 +19,10 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
+
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
-    <body class="antialiased">
+    <body class="antialiased" style="padding: 20px;">
         @yield('content')
     </body>
 

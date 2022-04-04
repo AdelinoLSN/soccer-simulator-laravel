@@ -2,7 +2,9 @@
 
 @section('content')
 
-<a href="{{ route('teams.list') }}">Teams</a>
-<a href="{{ route('matches.list') }}">Matches</a>
-
+<div class="flex flex-col">
+    <a href="{{ route('teams.index') }}">Teams</a>
+    <a href="{{ route('matches.index') }}">Matches</a>
+</div>
+    
 @endsection

@@ -20,7 +20,8 @@ class CreateMatchesTable extends Migration
             $table->boolean('is_neutral')->default(false);
             $table->integer('left_team_score')->nullable();
             $table->integer('right_team_score')->nullable();
-            $table->boolean('is_finished')->default(false);
+            $table->boolean('is_played')->default(false);
+            $table->longText('real_time')->nullable();
             $table->timestamps();
         });
     }

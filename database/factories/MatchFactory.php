@@ -19,7 +19,7 @@ class MatchFactory extends Factory
             'right_team_id' => function () { return \App\Models\Team::factory()->create()->id; },
             'right_team_score' => $this->faker->numberBetween(0, 7),
             'is_neutral' => $this->faker->boolean,
-            'is_finished' => $this->faker->boolean,
+            'is_played' => $this->faker->boolean,
         ];
     }
 }

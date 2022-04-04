@@ -20,9 +20,6 @@
             @endforeach
         </select>
 
-        <label for="left_team_score">Left Team Score</label>
-        <input type="number" name="left_team_score" id="left_team_score" value="{{ $match->left_team_score }}">
-
         <label for="right_team_id">Right Team</label>
         <select name="right_team_id" id="right_team_id" onChange="updateSelectLeftTeamId(this)">
             <option value="" disabled selected>Pick a team</option>
@@ -32,9 +29,6 @@
                 </option>
             @endforeach
         </select>
-
-        <label for="right_team_score">Right Team Score</label>
-        <input type="number" name="right_team_score" id="right_team_score" value="{{ $match->right_team_score }}">
 
         <label for="is_neutral">Is Neutral?</label>
         <input type="checkbox" name="is_neutral" id="is_neutral" {{ ($match->is_neutral ? 'checked' : '') }}>

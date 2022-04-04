@@ -7,10 +7,10 @@ use App\Models\Team;
 
 class TeamController extends Controller
 {
-    public function list() {
+    public function index() {
         $teams = Team::all();
 
-        return view('teams.list', compact('teams'));
+        return view('teams.index', compact('teams'));
     }
 
     public function create() {
@@ -24,7 +24,7 @@ class TeamController extends Controller
             'overall' => $request->overall,
         ]);
 
-        return redirect()->route('teams.list');
+        return redirect()->route('teams.index');
     }
 
     public function show($team_id) {
@@ -56,6 +56,6 @@ class TeamController extends Controller
 
         $team->delete();
 
-        return redirect()->route('teams.list');
+        return redirect()->route('teams.index');
     }
 }
